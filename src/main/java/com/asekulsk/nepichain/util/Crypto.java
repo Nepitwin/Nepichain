@@ -1,3 +1,19 @@
+/*
+ * Copyright 2018 Andreas Sekulski
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.asekulsk.nepichain.util;
 
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
@@ -20,13 +36,13 @@ public class Crypto {
      *
      * @param key       Public key to encrypt.
      * @param plaintext Plain text to encryt.
-     * @return Crypted message as byte array.
-     * @throws NoSuchPaddingException    ToDo
-     * @throws NoSuchAlgorithmException  If algorithm is not supported
-     * @throws NoSuchProviderException   If given provide is not supported
-     * @throws InvalidKeyException       If key is invalid.
-     * @throws BadPaddingException       ToDo
-     * @throws IllegalBlockSizeException ToDo
+     * @return Ciphered message as byte array.
+     * @throws NoSuchPaddingException    This exception is thrown when a particular padding mechanism is requested but is not available in the environment.
+     * @throws NoSuchAlgorithmException  This exception is thrown when a particular cryptographic algorithm is requested but is not available in the environment.
+     * @throws NoSuchProviderException   This exception is thrown when a particular security provider is requested but is not available in the environment.
+     * @throws InvalidKeyException       This is the exception for invalid Keys (invalid encoding, wrong length, uninitialized, etc).
+     * @throws BadPaddingException       This exception is thrown when a particular padding mechanism is expected for the input data but the data is not padded properly.
+     * @throws IllegalBlockSizeException This exception is thrown when the length of data provided to a block cipher is incorrect, i.e., does not match the block size of the cipher.
      */
     public static byte[] encrypt(PublicKey key, String plaintext) throws NoSuchPaddingException, NoSuchAlgorithmException, NoSuchProviderException, InvalidKeyException, BadPaddingException, IllegalBlockSizeException {
         Cipher cipher = Cipher.getInstance("ECIES", BouncyCastleProvider.PROVIDER_NAME);
@@ -39,13 +55,13 @@ public class Crypto {
      *
      * @param key  Private key for decipher usage.
      * @param data Data to decipher.
-     * @return Encrypted data as byte array.
-     * @throws NoSuchPaddingException    ToDo
-     * @throws NoSuchAlgorithmException  If algorithm is not supported
-     * @throws NoSuchProviderException   If given provide is not supported
-     * @throws InvalidKeyException       If key is invalid.
-     * @throws BadPaddingException       ToDo
-     * @throws IllegalBlockSizeException ToDo
+     * @return Ciphered data as byte array.
+     * @throws NoSuchPaddingException    This exception is thrown when a particular padding mechanism is requested but is not available in the environment.
+     * @throws NoSuchAlgorithmException  This exception is thrown when a particular cryptographic algorithm is requested but is not available in the environment.
+     * @throws NoSuchProviderException   This exception is thrown when a particular security provider is requested but is not available in the environment.
+     * @throws InvalidKeyException       This is the exception for invalid Keys (invalid encoding, wrong length, uninitialized, etc).
+     * @throws BadPaddingException       This exception is thrown when a particular padding mechanism is expected for the input data but the data is not padded properly.
+     * @throws IllegalBlockSizeException This exception is thrown when the length of data provided to a block cipher is incorrect, i.e., does not match the block size of the cipher.
      */
     public static byte[] decipher(PrivateKey key, byte[] data) throws NoSuchPaddingException, NoSuchAlgorithmException, NoSuchProviderException, InvalidKeyException, BadPaddingException, IllegalBlockSizeException {
         Cipher decipher = Cipher.getInstance("ECIES", BouncyCastleProvider.PROVIDER_NAME);
