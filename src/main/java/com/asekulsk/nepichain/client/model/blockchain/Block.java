@@ -6,6 +6,7 @@ import java.util.Date;
 
 /**
  * Immutable block to store data for blockchain.
+ *
  * @author Andreas Sekulski
  */
 public class Block {
@@ -32,7 +33,8 @@ public class Block {
 
     /**
      * Block constructor to create a block for a message.
-     * @param data Message to store for blockchain.
+     *
+     * @param data         Message to store for blockchain.
      * @param previousHash Previous hash from block to store.
      */
     public Block(Message data, String previousHash) {
@@ -44,6 +46,7 @@ public class Block {
 
     /**
      * Get hash signature from block to verify integrity.
+     *
      * @return SHA256 hash to verify.
      */
     public String getHash() {
@@ -52,6 +55,7 @@ public class Block {
 
     /**
      * Get hash from previous block element if not first.
+     *
      * @return If not first element SHA256 will be returned otherwise 0.
      */
     public String getPreviousHash() {
@@ -60,6 +64,7 @@ public class Block {
 
     /**
      * Get deciphered message data from block.
+     *
      * @return Deciphered message data which only receiver can decipher.
      */
     public Message getData() {
@@ -68,6 +73,7 @@ public class Block {
 
     /**
      * Get timestamp from block creation.
+     *
      * @return Timestamp in ms since 1/1/1970.
      */
     public long getTimeStamp() {
@@ -76,6 +82,7 @@ public class Block {
 
     /**
      * Calculate hash from block to check for manipulation.
+     *
      * @return SHA256 hash from block.
      */
     public String calculateHash() {

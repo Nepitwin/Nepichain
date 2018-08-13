@@ -9,6 +9,7 @@ import java.util.Arrays;
 
 /**
  * Immutable message block to store e-mail messages.
+ *
  * @author Andreas Sekulski
  */
 public class Message {
@@ -35,10 +36,11 @@ public class Message {
 
     /**
      * Creates message for given user.
+     *
      * @param signatureKey Signature key to create signature hash. Will not be stored!!!
-     * @param from Public key sender to verify signature.
-     * @param to Public key reciepient to decrypt data.
-     * @param message Message to cipher.
+     * @param from         Public key sender to verify signature.
+     * @param to           Public key reciepient to decrypt data.
+     * @param message      Message to cipher.
      */
     public Message(PrivateKey signatureKey, PublicKey from, PublicKey to, String message) {
         this.sender = from;
@@ -53,6 +55,7 @@ public class Message {
 
     /**
      * Get public key from sender.
+     *
      * @return Sender public key.
      */
     public PublicKey getSender() {
@@ -61,6 +64,7 @@ public class Message {
 
     /**
      * Get public key from recipient.
+     *
      * @return Public key from recipient to check.
      */
     public PublicKey getReciepient() {
@@ -69,6 +73,7 @@ public class Message {
 
     /**
      * Ciphered message as byte array which only recipient can decipher.
+     *
      * @return Get ciphered message as byte array.
      */
     public byte[] getMessage() {
@@ -77,6 +82,7 @@ public class Message {
 
     /**
      * Get signature from message to verify for manipulation.
+     *
      * @return Signature to check if message is valid.
      */
     public byte[] getSignature() {
@@ -85,6 +91,7 @@ public class Message {
 
     /**
      * Calculates hash from message.
+     *
      * @return Hash to verify if data is not modified.
      */
     public String calculateHash() {
@@ -95,6 +102,7 @@ public class Message {
 
     /**
      * Verifies the data we signed has not been tampered with
+     *
      * @return TRUE if signature is valid otherwise FALSE.
      */
     public boolean verifySignature() {
@@ -104,10 +112,11 @@ public class Message {
 
     /**
      * Signs all the data we dont wish to be tampered with.
+     *
      * @param privateKey Private key to generate signature.
      */
     private void generateSignature(PrivateKey privateKey) {
         String data = StringUtil.getStringFromKey(sender) + StringUtil.getStringFromKey(recipient) + message;
-        signature = Crypto.generateECDSASig(privateKey,data);
+        signature = Crypto.generateECDSASig(privateKey, data);
     }
 }

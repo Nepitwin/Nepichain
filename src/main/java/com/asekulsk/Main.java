@@ -9,18 +9,21 @@ import org.bouncycastle.jce.provider.BouncyCastleProvider;
 import java.security.Security;
 
 /**
- * Example for Nepichain as messaging mail encryption or decryption service.
- *   - Blockchain can be validate for modifications
- *   - Messages will be automatic ciphered from public key from BouncyCastle
- *   - List from each mailbox has one blockchain
- *     - Jack Bauer
- *     - Max Mustersecurity
- *     - ...
+ * Example for Nepichain as messaging mail encryption or decryption blockchain.
+ * - Blockchain can be validate for modifications
+ * - Messages will be automatic ciphered from public key from BouncyCastle
+ * - List from each mailbox has one blockchain
+ *      - Jack Bauer
+ *      - Max Mustersecurity
+ *      - ...
  *
  * @author Andreas Sekulski
  *
+ * <p>
+ * Tutorial from...
  * https://medium.com/programmers-blockchain/create-simple-blockchain-java-tutorial-from-scratch-6eeed3cb03fa
  * https://medium.com/programmers-blockchain/creating-your-first-blockchain-with-java-part-2-transactions-2cdac335e0ce
+ * </p>
  */
 public class Main {
 
@@ -33,7 +36,7 @@ public class Main {
         Mailbox mailbox_jack_bauer = new Mailbox("jack_bauer@24.de", "Jack Bauer");
 
         // Blockchain from Jack Bauer to obtain messages
-        Chain chain_jack_bauer = new Chain(mailbox_jack_bauer.getFullName());
+        Chain chain_jack_bauer = mailbox_jack_bauer.getBlockchain();
 
         Message message = mailbox_max_mustersecurity.createMessageForMailbox(mailbox_jack_bauer.getPublicKey(),
                 "Hello Jack Bauer you got 24 hours to stop me ;)");
@@ -53,11 +56,10 @@ public class Main {
         System.out.println();
 
         // Decrypt messages for jack
-        for(int i = 0; i < chain_jack_bauer.size(); i++) {
+        for (int i = 0; i < chain_jack_bauer.size(); i++) {
             System.out.println("Is signature verified : " + chain_jack_bauer.getMessage(i).verifySignature());
             System.out.println(mailbox_jack_bauer.getMessageFromBlock(chain_jack_bauer.getMessage(i)));
             System.out.println();
         }
-
     }
 }

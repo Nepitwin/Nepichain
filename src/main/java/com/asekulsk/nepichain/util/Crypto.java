@@ -10,20 +10,22 @@ import java.security.*;
 
 /**
  * Bouncy castle crypto helper class.
+ *
  * @author Andreas Sekulski
  */
 public class Crypto {
 
     /**
      * Encrypt plaintext message with public key.
-     * @param key Public key to encrypt.
+     *
+     * @param key       Public key to encrypt.
      * @param plaintext Plain text to encryt.
      * @return Crypted message as byte array.
-     * @throws NoSuchPaddingException ToDo
-     * @throws NoSuchAlgorithmException If algorithm is not supported
-     * @throws NoSuchProviderException If given provide is not supported
-     * @throws InvalidKeyException If key is invalid.
-     * @throws BadPaddingException ToDo
+     * @throws NoSuchPaddingException    ToDo
+     * @throws NoSuchAlgorithmException  If algorithm is not supported
+     * @throws NoSuchProviderException   If given provide is not supported
+     * @throws InvalidKeyException       If key is invalid.
+     * @throws BadPaddingException       ToDo
      * @throws IllegalBlockSizeException ToDo
      */
     public static byte[] encrypt(PublicKey key, String plaintext) throws NoSuchPaddingException, NoSuchAlgorithmException, NoSuchProviderException, InvalidKeyException, BadPaddingException, IllegalBlockSizeException {
@@ -34,14 +36,15 @@ public class Crypto {
 
     /**
      * Decipher data with private key.
-     * @param key Private key for decipher usage.
+     *
+     * @param key  Private key for decipher usage.
      * @param data Data to decipher.
      * @return Encrypted data as byte array.
-     * @throws NoSuchPaddingException ToDo
-     * @throws NoSuchAlgorithmException If algorithm is not supported
-     * @throws NoSuchProviderException If given provide is not supported
-     * @throws InvalidKeyException If key is invalid.
-     * @throws BadPaddingException ToDo
+     * @throws NoSuchPaddingException    ToDo
+     * @throws NoSuchAlgorithmException  If algorithm is not supported
+     * @throws NoSuchProviderException   If given provide is not supported
+     * @throws InvalidKeyException       If key is invalid.
+     * @throws BadPaddingException       ToDo
      * @throws IllegalBlockSizeException ToDo
      */
     public static byte[] decipher(PrivateKey key, byte[] data) throws NoSuchPaddingException, NoSuchAlgorithmException, NoSuchProviderException, InvalidKeyException, BadPaddingException, IllegalBlockSizeException {
@@ -52,6 +55,7 @@ public class Crypto {
 
     /**
      * Applies SHA256 to a string and returns the result.
+     *
      * @param input Input to generate as SHA256
      * @return SHA256 String output.
      */
@@ -74,8 +78,9 @@ public class Crypto {
 
     /**
      * Applies ECDSA Signature and returns the result ( as bytes ).
+     *
      * @param privateKey Private key to generate signature.
-     * @param input Input to generate signature.
+     * @param input      Input to generate signature.
      * @return ECDSA Signature as bytes.
      */
     public static byte[] generateECDSASig(PrivateKey privateKey, String input) {
@@ -96,8 +101,9 @@ public class Crypto {
 
     /**
      * Verifies a String signature
+     *
      * @param publicKey Public key to generate signature.
-     * @param data Date to verify.
+     * @param data      Date to verify.
      * @param signature Signature to check.
      * @return TRUE if signature is valid FALSE if not.
      */

@@ -5,12 +5,14 @@ import java.util.Base64;
 
 /**
  * String utility helper class.
+ *
  * @author Andreas Sekulski
  */
 public class StringUtil {
 
     /**
      * Get string representation from key.
+     *
      * @param key Key to convert as String.
      * @return String representation from key.
      */

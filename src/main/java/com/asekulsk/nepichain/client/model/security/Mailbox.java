@@ -1,6 +1,6 @@
 package com.asekulsk.nepichain.client.model.security;
 
-import com.asekulsk.nepichain.client.model.blockchain.Block;
+import com.asekulsk.nepichain.client.model.blockchain.Chain;
 import com.asekulsk.nepichain.client.model.blockchain.Message;
 import com.asekulsk.nepichain.util.Crypto;
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
@@ -10,10 +10,10 @@ import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 import java.security.*;
 import java.security.spec.ECGenParameterSpec;
-import java.util.ArrayList;
 
 /**
  * Mailbox to store client data from a mailbox for example private or public keys.
+ *
  * @author Andreas Sekulski
  */
 public class Mailbox {
@@ -41,22 +41,24 @@ public class Mailbox {
     /**
      * Blockchain to store message blocks for each mailbox.
      */
-    public ArrayList<Block> blockchain;
+    public Chain blockchain;
 
     /**
      * Constructor to create mailbox for a specific user and email.
-     * @param email E-Mail from user.
+     *
+     * @param email    E-Mail from user.
      * @param fullName Full name from user for example Max Mustermann.
      */
-    public Mailbox(String email, String fullName){
+    public Mailbox(String email, String fullName) {
         generateKeyPair();
         this.email = email;
         this.fullName = fullName;
-        this.blockchain = new ArrayList<>();
+        this.blockchain = new Chain(this.email);
     }
 
     /**
      * Get public key from mailbox user.
+     *
      * @return Public key for crypto usage.
      */
     public PublicKey getPublicKey() {
@@ -65,6 +67,7 @@ public class Mailbox {
 
     /**
      * Get e-mail from mailbox which is used.
+     *
      * @return E-Mail from user.
      */
     public String getEmail() {
@@ -73,6 +76,7 @@ public class Mailbox {
 
     /**
      * Get full name from mailbox to use.
+     *
      * @return Full name as String for example Max Mustermann.
      */
     public String getFullName() {
@@ -80,9 +84,19 @@ public class Mailbox {
     }
 
     /**
+     * Get blockchain from user.
+     *
+     * @return Chain to handle data messaging.
+     */
+    public Chain getBlockchain() {
+        return blockchain;
+    }
+
+    /**
      * Generates secured message for blockchain usage to send.
+     *
      * @param receiverKey Public key from receiver.
-     * @param message Message to send.
+     * @param message     Message to send.
      */
     public Message createMessageForMailbox(PublicKey receiverKey, String message) {
         return new Message(privateKey, publicKey, receiverKey, message);
@@ -90,6 +104,7 @@ public class Mailbox {
 
     /**
      * Decipher message from given block message.
+     *
      * @param message Message to decipher.
      * @return Empty String if not successfully otherwise deciphered message.
      */
@@ -132,7 +147,7 @@ public class Mailbox {
             // Set the public and private keys from the keyPair
             privateKey = keyPair.getPrivate();
             publicKey = keyPair.getPublic();
-        }catch(Exception e) {
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
