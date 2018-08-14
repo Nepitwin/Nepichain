@@ -16,7 +16,6 @@
 
 package com.asekulsk;
 
-import com.asekulsk.nepichain.client.model.blockchain.Block;
 import com.asekulsk.nepichain.client.model.blockchain.Chain;
 import com.asekulsk.nepichain.client.model.blockchain.Message;
 import com.asekulsk.nepichain.client.model.security.Mailbox;
@@ -30,9 +29,9 @@ import java.security.Security;
  * - Blockchain can be validate for modifications
  * - Messages will be automatic ciphered from public key from BouncyCastle
  * - List from each mailbox has one blockchain
- *      - Jack Bauer
- *      - Max Mustersecurity
- *      - ...
+ * - Jack Bauer
+ * - Max Mustersecurity
+ * - ...
  *
  * @author Andreas Sekulski
  *
@@ -57,19 +56,19 @@ public class Main {
         PublicKey jackPublicKey = mailbox_jack_bauer.getPublicKey();
 
         // Blockchain from Jack Bauer to create or obtain messages
-        Chain chain_jack_bauer = mailbox_jack_bauer.getBlockchain();
+        Chain chain_jack_bauer = mailbox_jack_bauer.getChain();
 
         textMessage = "Hello Jack Bauer you got 24 hours to stop me ;)";
         Message message = mailbox_max_mustersecurity.createMessage(jackPublicKey, textMessage);
-        chain_jack_bauer.addBlockToChain(new Block(message, chain_jack_bauer.getLastHash()));
+        chain_jack_bauer.addMessageToChain(message);
 
         textMessage = "Tick tack... Jack Bauer you got 23 hours to stop me ;)";
-        message = mailbox_max_mustersecurity.createMessage(jackPublicKey,textMessage);
-        chain_jack_bauer.addBlockToChain(new Block(message, chain_jack_bauer.getLastHash()));
+        message = mailbox_max_mustersecurity.createMessage(jackPublicKey, textMessage);
+        chain_jack_bauer.addMessageToChain(message);
 
         textMessage = "Hello Jack the bomb is ticking ;)";
         message = mailbox_max_mustersecurity.createMessage(jackPublicKey, textMessage);
-        chain_jack_bauer.addBlockToChain(new Block(message, chain_jack_bauer.getLastHash()));
+        chain_jack_bauer.addMessageToChain(message);
 
         // Blockchain validation
         System.out.println(chain_jack_bauer.toJSON());

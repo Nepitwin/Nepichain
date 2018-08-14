@@ -55,9 +55,9 @@ public class Mailbox {
     private String fullName;
 
     /**
-     * Blockchain to store message blocks for each mailbox.
+     * Chain to store message blocks for each mailbox.
      */
-    public Chain blockchain;
+    public Chain chain;
 
     /**
      * Constructor to create mailbox for a specific user and email.
@@ -69,7 +69,7 @@ public class Mailbox {
         generateKeyPair();
         this.email = email;
         this.fullName = fullName;
-        this.blockchain = new Chain(this.email);
+        this.chain = new Chain(this.email);
     }
 
     /**
@@ -100,12 +100,12 @@ public class Mailbox {
     }
 
     /**
-     * Get blockchain from user.
+     * Get current chain from mailbox user.
      *
      * @return Chain to handle data messaging.
      */
-    public Chain getBlockchain() {
-        return blockchain;
+    public Chain getChain() {
+        return chain;
     }
 
     /**

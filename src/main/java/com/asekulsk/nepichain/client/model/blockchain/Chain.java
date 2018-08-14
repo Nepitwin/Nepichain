@@ -56,20 +56,11 @@ public class Chain {
     /**
      * Add block to chain.
      *
-     * @param block Block to add.
+     * @param message Crypted message to add in chain.
      * @return TRUE if block is added otherwise FALSE.
      */
-    public boolean addBlockToChain(Block block) {
-        return block != null && blockchain.add(block);
-    }
-
-    /**
-     * Get last hash value from blockchain.
-     *
-     * @return If blockchain is empty "0" will be returned otherwise actual hash from last block.
-     */
-    public String getLastHash() {
-        return blockchain.isEmpty() ? "0" : blockchain.get(blockchain.size() - 1).getHash();
+    public boolean addMessageToChain(Message message) {
+        return message != null && blockchain.add(new Block(message, getLastHash()));
     }
 
     /**
@@ -137,5 +128,14 @@ public class Chain {
             }
         }
         return true;
+    }
+
+    /**
+     * Get last hash value from blockchain.
+     *
+     * @return If blockchain is empty "0" will be returned otherwise actual hash from last block.
+     */
+    private String getLastHash() {
+        return blockchain.isEmpty() ? "0" : blockchain.get(blockchain.size() - 1).getHash();
     }
 }
