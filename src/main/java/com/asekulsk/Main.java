@@ -58,6 +58,13 @@ public class Main {
         // Blockchain from Jack Bauer to create or obtain messages
         Chain chain_jack_bauer = mailbox_jack_bauer.getChain();
 
+        //   __i
+        //  |---|    FLIP PHONES ARE GOOD ENOUGH FOR JACK BAUER
+        //  |[_]|    SO THEY SHOULD BE GOOD ENOUGH FOR ANYBODY
+        //  |:::|
+        //  |:::|    I CALL JACK NOW :-)
+        //  `\   \
+        //    \_=_\
         textMessage = "Hello Jack Bauer you got 24 hours to stop me ;)";
         Message message = mailbox_max_mustersecurity.createMessage(jackPublicKey, textMessage);
         chain_jack_bauer.addMessageToChain(message);
